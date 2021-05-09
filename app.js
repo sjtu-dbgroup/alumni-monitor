@@ -131,7 +131,6 @@ var app = new Vue({
             const {
                 timeout = 8000
             } = options;
-            console.log(options)
 
             const controller = new AbortController();
             const id = setTimeout(() => controller.abort(), timeout);
