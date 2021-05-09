@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>alumni</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./buefy.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="container">
+
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <b-button type="is-primary" @click="refresh()">Refresh</b-button>
+          </div>
+        </div>
+      </div>
+
+      &nbsp;
+
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <div class="columns is-desktop">
+              <div class="column" v-for="env in environments">
+                <nav class="panel">
+                  <p class="panel-heading">{{env.name}}</p>
+                  <div class="panel-block" v-for="svc in env.services">
+                    <span class="panel-icon">
+                      <b-icon :icon="svc.icon" size="is-small"></b-icon>
+                    </span>
+                    <b-tag type="is-info is-light">
+                      {{svc.name}}
+                      <a :href="svc.url" target="_blank">
+                        <b-icon icon="link" size="is-small"></b-icon>
+                      </a>
+                    </b-tag>
+                    <span v-if="!svc.version" class="has-text-primary">
+                      EMPTY
+                    </span>
+                    <span v-else-if="svc.versionError" class="has-text-danger">
+                      {{svc.version}}
+                    </span>
+                    <span v-else class="has-text-success">
+                      {{svc.version}}
+                    </span>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+      </div>
+    </footer>
+
+  </div>
+  <script src="vue.js"></script>
+  <script src="buefy.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
